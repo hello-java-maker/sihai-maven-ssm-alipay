@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sihai.mapper.FlowMapper" >
+  <resultMap id="BaseResultMap" type="com.sihai.pojo.Flow" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="flow_num" property="flowNum" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="paid_amount" property="paidAmount" jdbcType="VARCHAR" />
+    <result column="paid_method" property="paidMethod" jdbcType="INTEGER" />
+    <result column="buy_counts" property="buyCounts" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, flow_num, order_num, product_id, paid_amount, paid_method, buy_counts, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sihai.pojo.FlowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from flow
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from flow
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sihai.pojo.FlowExample" >
+    delete from flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sihai.pojo.Flow" >
+    insert into flow (id, flow_num, order_num, 
+      product_id, paid_amount, paid_method, 
+      buy_counts, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{flowNum,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=VARCHAR}, #{paidAmount,jdbcType=VARCHAR}, #{paidMethod,jdbcType=INTEGER}, 
+      #{buyCounts,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sihai.pojo.Flow" >
+    insert into flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="flowNum != null" >
+        flow_num,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="paidAmount != null" >
+        paid_amount,
+      </if>
+      <if test="paidMethod != null" >
+        paid_method,
+      </if>
+      <if test="buyCounts != null" >
+        buy_counts,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="flowNum != null" >
+        #{flowNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="paidAmount != null" >
+        #{paidAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="paidMethod != null" >
+        #{paidMethod,jdbcType=INTEGER},
+      </if>
+      <if test="buyCounts != null" >
+        #{buyCounts,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sihai.pojo.FlowExample" resultType="java.lang.Integer" >
+    select count(*) from flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update flow
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowNum != null" >
+        flow_num = #{record.flowNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNum != null" >
+        order_num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paidAmount != null" >
+        paid_amount = #{record.paidAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paidMethod != null" >
+        paid_method = #{record.paidMethod,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyCounts != null" >
+        buy_counts = #{record.buyCounts,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update flow
+    set id = #{record.id,jdbcType=VARCHAR},
+      flow_num = #{record.flowNum,jdbcType=VARCHAR},
+      order_num = #{record.orderNum,jdbcType=VARCHAR},
+      product_id = #{record.productId,jdbcType=VARCHAR},
+      paid_amount = #{record.paidAmount,jdbcType=VARCHAR},
+      paid_method = #{record.paidMethod,jdbcType=INTEGER},
+      buy_counts = #{record.buyCounts,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sihai.pojo.Flow" >
+    update flow
+    <set >
+      <if test="flowNum != null" >
+        flow_num = #{flowNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="paidAmount != null" >
+        paid_amount = #{paidAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="paidMethod != null" >
+        paid_method = #{paidMethod,jdbcType=INTEGER},
+      </if>
+      <if test="buyCounts != null" >
+        buy_counts = #{buyCounts,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sihai.pojo.Flow" >
+    update flow
+    set flow_num = #{flowNum,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      paid_amount = #{paidAmount,jdbcType=VARCHAR},
+      paid_method = #{paidMethod,jdbcType=INTEGER},
+      buy_counts = #{buyCounts,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
