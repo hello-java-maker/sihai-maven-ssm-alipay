@@ -1,7 +1,21 @@
-### 目录
-- 1、支付宝沙箱环境测试demo
-- 2、支付宝整合到ssm环境
-- 3、微信支付整合到ssm环境
+## 支付宝支付、微信支付等第三方支付方式项目推荐
+
+今天更新一下这个github，主要是加入一些优质的第三方支付的项目，一些是可以快速的集成到项目中，一些是可以作为学习第三方支付的项目，希望对大家有帮助。
+
+- [一个Github项目搞定微信、QQ、支付宝等第三方登录](https://mp.weixin.qq.com/s/CrnicXHoaPGr5DBCPwZOQg)
+- [推荐多个第三方支付的项目，包括微信支付、支付宝支付等主流支付系统](https://mp.weixin.qq.com/s/GiCVeo1QY3Mqx-0R2rLqdA)
+
+## JavaInterview：Java面试+Java后端技术学习指南
+
+【Java面试+Java后端技术学习指南】：一份通向理想互联网公司的面试指南，包括 Java，技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计、分布式、数据库（MySQL、Redis）、Java 项目实战等
+
+- https://github.com/hello-java-maker/JavaInterview
+
+## SSM项目引入文档目录
+
+- 支付宝沙箱环境测试demo
+- 支付宝整合到ssm环境
+- 微信支付整合到ssm环境
 
 
 ### 一、支付宝测试环境代码测试
